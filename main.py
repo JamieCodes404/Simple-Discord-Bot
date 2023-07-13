@@ -1,6 +1,3 @@
-import requests
-
-import discord
 from discord.ext import commands
 
 from discord.ui import Select, View
@@ -26,11 +23,13 @@ async def on_ready():
 
 @bot.tree.command(name="hey")
 async def hello(interaction: discord.Interaction):
+    """This command says hello!"""
     await interaction.response.send_message('hello')
 
 
 @bot.tree.command(name="joke")
 async def joke(interaction: discord.Interaction):
+    """This command will tell a random joke"""
     url = 'https://v2.jokeapi.dev/joke/Any?type=single'
     r = requests.get(url)
     json = r.json()
@@ -40,6 +39,7 @@ async def joke(interaction: discord.Interaction):
 
 @bot.tree.command(name="joke_embed")
 async def joke_embed(interaction: discord.Interaction):
+    """This command will create an embed where you can select a joke category then it will tell that relevant joke"""
     select = Select(placeholder="Chose a joke category", options=[
         discord.SelectOption(label='All'),
         discord.SelectOption(label='Programming'),
@@ -66,8 +66,6 @@ async def joke_embed(interaction: discord.Interaction):
         description='Select a joke category below and then press the generate button and it will generate a joke for you using the https://jokeapi.dev API',
         colour=discord.Colour.dark_teal()
     )
-
-    await interaction.response.send_message(embed=embed, view=view, ephemeral=True, delete_after=30)
 
 
 bot.run(token)
