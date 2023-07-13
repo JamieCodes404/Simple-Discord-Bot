@@ -33,9 +33,8 @@ async def hello(interaction: discord.Interaction):
 async def joke(interaction: discord.Interaction):
     url = 'https://v2.jokeapi.dev/joke/Any?type=single'
     r = requests.get(url)
-    print(r)
     json = r.json()
-    print(json)
+
     await interaction.response.send_message(json['joke'])
 
 
@@ -54,9 +53,8 @@ async def joke_embed(interaction: discord.Interaction):
     async def my_callback(interaction):
         url = f'https://v2.jokeapi.dev/joke/{select.values[0]}?type=single'
         r = requests.get(url)
-        print(r)
         json = r.json()
-        print(json)
+
         await interaction.response.send_message(json['joke'], ephemeral=True, delete_after=30)
 
     select.callback = my_callback
