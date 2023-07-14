@@ -1,5 +1,7 @@
-from discord.ext import commands
+import requests
 
+import discord
+from discord.ext import commands
 from discord.ui import Select, View
 
 import os
@@ -66,6 +68,8 @@ async def joke_embed(interaction: discord.Interaction):
         description='Select a joke category below and then press the generate button and it will generate a joke for you using the https://jokeapi.dev API',
         colour=discord.Colour.dark_teal()
     )
+
+    await interaction.response.send_message(embed=embed, view=view)
 
 
 bot.run(token)
