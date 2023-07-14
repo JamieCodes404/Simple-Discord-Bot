@@ -65,11 +65,11 @@ async def joke_embed(interaction: discord.Interaction):
 
     embed = discord.Embed(
         title='Generate a joke',
-        description='Select a joke category below and then press the generate button and it will generate a joke for you using the https://jokeapi.dev API',
+        description='Select a joke category below and then press the generate button and it will generate a joke for you using the https://v2.jokeapi.dev API',
         colour=discord.Colour.dark_teal()
     )
 
-    await interaction.response.send_message(embed=embed, view=view)
+    await interaction.response.send_message(embed=embed, view=view, ephemeral=True, delete_after=30)
 
 
 bot.run(token)
